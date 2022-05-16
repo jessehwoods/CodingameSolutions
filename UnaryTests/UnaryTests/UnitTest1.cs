@@ -26,25 +26,25 @@ namespace UnaryTests
         [TestMethod]
         public void TestC()
         {
-            Assert.AreEqual(CSOLUTION, Unary.Solution.ConvertString(CINPUT));
+            Assert.AreEqual(CSOLUTION, Unary.Solution.ConvertStringToUnary(CINPUT));
         }
 
         [TestMethod]
         public void TestCC()
         {
-            Assert.AreEqual(CCSOLUTION, Unary.Solution.ConvertString(CCINPUT));
+            Assert.AreEqual(CCSOLUTION, Unary.Solution.ConvertStringToUnary(CCINPUT));
         }
 
         [TestMethod]
         public void TestPercent()
         {
-            Assert.AreEqual(PERCENTSOLUTION, Unary.Solution.ConvertString(PERCENTINPUT));
+            Assert.AreEqual(PERCENTSOLUTION, Unary.Solution.ConvertStringToUnary(PERCENTINPUT));
         }
 
         [TestMethod]
         public void TestMessage()
         {
-            Assert.AreEqual(MESSAGESOLUTION, Unary.Solution.ConvertString(MESSAGEINPUT));
+            Assert.AreEqual(MESSAGESOLUTION, Unary.Solution.ConvertStringToUnary(MESSAGEINPUT));
         }
     }
 }
