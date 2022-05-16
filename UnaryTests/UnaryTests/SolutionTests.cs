@@ -5,7 +5,7 @@ namespace UnaryTests
 {
 
     [TestClass]
-    public class UnaryTests
+    public class SolutionTests
     {
         //String "C" input and converted form
         private static string CINPUT = "C";

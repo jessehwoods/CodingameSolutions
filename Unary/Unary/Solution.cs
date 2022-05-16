@@ -7,6 +7,9 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("UnaryTests")]
 
+/**
+ * This is a solution to the puzzle at https://www.codingame.com/training/easy/unary
+ */
 namespace Unary
 {
     internal class Solution
