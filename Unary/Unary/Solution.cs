@@ -13,10 +13,14 @@ namespace Unary
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(SayBlah());
+            //Gets the string to be converted
+            string MESSAGE = Console.ReadLine();
+
+            //Returns the solution
+            Console.WriteLine(ConvertString(MESSAGE));
         }
 
-        internal static string SayBlah()
+        internal static string ConvertString(string ToConvert)
         {
             return "blah";
         }
