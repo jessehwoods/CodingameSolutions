@@ -61,7 +61,7 @@ namespace Unary
         /**
         * Converts a string to a unary version of the string as a series of '0' and whitespace characters.
          */
-        internal static string GetUnaryVersionOfBinary(string BinaryStringToConvert)
+        internal static string BinaryToUnary(string BinaryStringToConvert)
         {
             StringBuilder UnaryVersion = new StringBuilder();
 
