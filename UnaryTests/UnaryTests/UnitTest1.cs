@@ -34,7 +34,7 @@ namespace UnaryTests
         [TestMethod]
         public void TestCCToBinary()
         {
-            Assert.AreEqual(CCBINARY, Unary.Solution.GetBinaryVersionOfString(CINPUT));
+            Assert.AreEqual(CCBINARY, Unary.Solution.GetBinaryVersionOfString(CCINPUT));
         }
         
         [TestMethod]
