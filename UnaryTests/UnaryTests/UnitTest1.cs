@@ -68,7 +68,7 @@ namespace UnaryTests
         }
 
         [TestMethod]
-        public void TestMessagToUnarye()
+        public void TestMessagToUnary()
         {
             Assert.AreEqual(MESSAGESOLUTION, Unary.Solution.ConvertStringToUnary(MESSAGEINPUT));
         }

@@ -75,9 +75,10 @@ namespace Unary
             {
                 if (!c.Equals(CurrentChar))
                 {
-                    //If it's a new character, need to add the first part
+                    //If it's a different character, need to add the first part of the unary expression
                     UnaryVersion.Append(WHITESPACE);
                     UnaryVersion.Append(LeadCharacter(c));
+                    CurrentChar = c;
                 }
                 //Always add a zero for each character to the second part.
                 UnaryVersion.Append(ZERO);
