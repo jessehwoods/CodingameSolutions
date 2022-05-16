@@ -7,7 +7,23 @@ namespace UnaryTests
     public class UnaryTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestC()
+        {
+            Assert.AreEqual("0 0 00 0000 0 00", "00");
+        }
+
+        [TestMethod]
+        public void TestCC()
+        {
+        }
+
+        [TestMethod]
+        public void TestPercent()
+        {
+        }
+
+        [TestMethod]
+        public void TestMessage()
         {
         }
     }
