@@ -27,14 +27,15 @@ namespace Unary
         }
 
         /**
-         * Converts a string of arbitrary characters to unary.
+         * Converts a string of arbitrary characters to unary based on the binary of ASCII 7-bit characters.
          * 
          * Unary is based on the binary represenation of the binary represenation of the character, and is "0" for a block of 1s or "00" for a 
          * block of 0s, followed by a space and a number of 0s equal to the characters in the block. 
          */
         internal static string ConvertStringToUnary(string StringToConvert)
         {
-            //Convert the string to a string of '1' and '0' chars based on the binary
+
+            //Convert the string to a string of '1' and '0' chars based on the binary of ASCII 7-bit encoding.
             string BinaryVersion = GetBinaryVersionOfString(StringToConvert);
 
             //Convert the binary to unary
@@ -52,7 +53,7 @@ namespace Unary
 
             foreach (char c in CharStringToConvert)
             {
-                BinaryVersion.Append(Convert.ToString((int)c, 2));
+                BinaryVersion.Append( Convert.ToString(System.Convert.ToInt32(c), 2).PadLeft(7, ZERO));
             }
 
             return BinaryVersion.ToString();
