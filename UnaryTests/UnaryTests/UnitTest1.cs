@@ -19,6 +19,7 @@ namespace UnaryTests
 
         //String "%" input and converted form
         private static string PERCENTINPUT = "%";
+        private static string PERCENTBINARY = "0100101";
         private static string PERCENTSOLUTION = "00 0 0 0 00 00 0 0 00 0 0 0";
 
         //String "Chuck Norris' keyboard has 2 keys: 0 and white space." input and converted form
@@ -36,7 +37,13 @@ namespace UnaryTests
         {
             Assert.AreEqual(CCBINARY, Unary.Solution.GetBinaryVersionOfString(CCINPUT));
         }
-        
+
+        [TestMethod]
+        public void TestPercentToBinary()
+        {
+            Assert.AreEqual(PERCENTBINARY, Unary.Solution.GetBinaryVersionOfString(PERCENTINPUT));
+        }
+
         [TestMethod]
         public void TestCBinaryToUnary()
         {
@@ -47,6 +54,12 @@ namespace UnaryTests
         public void TestCCBinaryToUnary()
         {
             Assert.AreEqual(CCSOLUTION, Unary.Solution.BinaryToUnary(CCBINARY));
+        }
+
+        [TestMethod]
+        public void TestPercentBinaryToUnary()
+        {
+            Assert.AreEqual(PERCENTSOLUTION, Unary.Solution.BinaryToUnary(PERCENTBINARY));
         }
 
         [TestMethod]
@@ -68,7 +81,7 @@ namespace UnaryTests
         }
 
         [TestMethod]
-        public void TestMessagToUnary()
+        public void TestMessageToUnary()
         {
             Assert.AreEqual(MESSAGESOLUTION, Unary.Solution.ConvertStringToUnary(MESSAGEINPUT));
         }
