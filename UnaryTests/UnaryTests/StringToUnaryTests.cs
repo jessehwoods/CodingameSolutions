@@ -1,11 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
+/**
+ * These are tests for a solution to the puzzle at https://www.codingame.com/training/easy/unary
+ */
 namespace UnaryTests
 {
 
     [TestClass]
-    public class SolutionTests
+    public class StringToUnaryTests
     {
         //String "C" input and converted form
         private static string CINPUT = "C";
