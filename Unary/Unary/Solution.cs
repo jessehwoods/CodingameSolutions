@@ -38,7 +38,7 @@ namespace Unary
             string BinaryVersion = GetBinaryVersionOfString(StringToConvert);
 
             //Convert the binary to unary
-            string UnaryVersion = GetUnaryVersionOfBinary(BinaryVersion);
+            string UnaryVersion = BinaryToUnary(BinaryVersion);
 
             return UnaryVersion;
         }
