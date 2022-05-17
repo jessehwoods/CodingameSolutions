@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 
 /**
  * This is a solution to the puzzle at https://www.codingame.com/training/easy/unary
+ * Solution successful as of 5/17/2022
  */
 namespace Unary
 {

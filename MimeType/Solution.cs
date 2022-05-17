@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 /**
  * This is a solution to the puzzle at https://www.codingame.com/training/easy/mime-type
+ * Solution successful as of 5/17/2022
  */
 namespace MimeType
 {
