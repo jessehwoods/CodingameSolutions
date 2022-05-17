@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("MimeTypeTests")]
+
 /**
  * This is a solution to the puzzle at https://www.codingame.com/training/easy/mime-type
  */
@@ -52,7 +54,7 @@ namespace MimeType
          * An object that can be given file extensions and MIME types, as a string, and then return the appropriate MIME type or "UNKOWN" for
          * an input filename.
          */
-        private class Classifier
+        internal class Classifier
         {
             /**
              * Constructor that takes an expected number of entries to put in the dictionary.
