@@ -10,22 +10,79 @@ namespace MimeTypeTests
     public class MimeTypeTests
     {
 
-        private static string Input1 = "3\n3\nhtml text/html\npng image/png\ngif image/gif\nanimated.gif\nportrait.png\nindex.html";
-        private static string Output1 = "image/gif\nimage/png\ntext/html";
+        private MimeType.Solution.Classifier classifier;
 
-        private static string Input2 = "3\n4\ntxt text/plain\nxml text/xml\nflv video/x-flv\nimage.png\nanimated.gif\nscript.js\nsource.cpp";
-        private static string Output2 = "";
+        private static string OUTPUTUNKNOWN = "UNKNOWN";
 
-        private static string Input3 = "3\n11\nwav audio/x-wav\nmp3 audio/mpeg\npdf application/pdf\na\na.wav\nb.wav.tmp\ntest.vmp3\npdf\n.pdf\nmp3\nreport..pdf\ndefaultwav\n.mp3.\nfinal.";
-        private static string Output3 = "";
+        private static string MINPUT1 = "html text/html";
+        private static string MINPUT2 = "png image/png";
+        private static string MINPUT3 = "gif image/gif";
+        private static string MINPUT4 = "txt text/plain";
+        private static string MINPUT5 = "css text/css";
 
-        private static string Input4 = "4\n7\npng image/png\nTIFF image/TIFF\ncss text/css\nTXT text/plain\nexample.TXT\nreferecnce.txt\nstrangename.tiff\nresolv.CSS\nmatrix.TiFF\nlanDsCape.Png\nextract.cSs";
-        private static string Output4 = "";
+        private static string MOUTPUT1 = "text/html";
+        private static string MOUTPUT2 = "image/png";
+        private static string MOUTPUT3 = "image/gif";
+        private static string MOUTPUT4 = "text/plain";
+        private static string MOUTPUT5 = "text/css";
 
+        private static string FNAME1 = "a.b.html";
+        private static string FNAME2 = "picture..png";
+        private static string FNAME3 = "animated.gif";
+        private static string FNAME4 = "name.tXt";
+        private static string FNAME5 = "resolv.CSS";
 
-        [TestMethod]
-        public void TestMethod1()
+        private string FNAMEUNKOWN1 = "a.html.b";
+        private string FNAMEUNKOWN2 = "picture.png.";
+        private string FNAMEUNKOWN3 = "gif";
+        private string FNAMEUNKOWN4 = "name...";
+        private string FNAMEUNKOWN5 = "resolv.cSv";
+
+        [TestInitialize]
+        public void TestInitialize()
         {
+            classifier = new MimeType.Solution.Classifier();
         }
+
+        // Check an empty classifier will return "UNKNOWN" to everything.
+        [TestMethod]
+        public void TestEmpty()
+        {
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAME1));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAME2));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAME3));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAME4));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAME5));
+
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN1));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN2));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN3));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN4));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN5));
+        }
+
+        // Check a classifier with MIME types loaded, should give expected output to the name types and unknown to the unkown types.
+        [TestMethod]
+        public void TestMimeTypesAdded()
+        {
+            classifier.AddMimeType(MINPUT1);
+            classifier.AddMimeType(MINPUT2);
+            classifier.AddMimeType(MINPUT3);
+            classifier.AddMimeType(MINPUT4);
+            classifier.AddMimeType(MINPUT5);
+
+            Assert.AreEqual(MOUTPUT1, classifier.ClassifyFilename(FNAME1));
+            Assert.AreEqual(MOUTPUT2, classifier.ClassifyFilename(FNAME2));
+            Assert.AreEqual(MOUTPUT3, classifier.ClassifyFilename(FNAME3));
+            Assert.AreEqual(MOUTPUT4, classifier.ClassifyFilename(FNAME4));
+            Assert.AreEqual(MOUTPUT5, classifier.ClassifyFilename(FNAME5));
+
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN1));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN2));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN3));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN4));
+            Assert.AreEqual(OUTPUTUNKNOWN, classifier.ClassifyFilename(FNAMEUNKOWN5));
+        }
+
     }
 }
