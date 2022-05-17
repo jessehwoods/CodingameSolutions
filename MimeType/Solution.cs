@@ -88,7 +88,7 @@ namespace MimeType
                 string[] nameParts = input.Split('.');
                 if (nameParts.Length > 1 && mimeTypes.TryGetValue(nameParts[nameParts.Length - 1], out FEXT) ) // This tells us if there was a '.' to split on and gets the last one.
                 {
-                    FTYPE = mimeTypes[FEXT];
+                    FTYPE = FEXT;
                 }
                 // Do a null check on FEXT to see if we found a valid file extension
                 if (FTYPE == null || FTYPE.Length == 0)
