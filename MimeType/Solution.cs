@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("MimeTypeTests")]
 
@@ -12,12 +10,6 @@ using System.Threading.Tasks;
  */
 namespace MimeType
 {
-    using System;
-    using System.Linq;
-    using System.IO;
-    using System.Text;
-    using System.Collections;
-    using System.Collections.Generic;
 
     /**
      * Auto-generated code below aims at helping you parse
@@ -27,8 +19,6 @@ namespace MimeType
     {
 
         private static string UNKNOWN = "UNKNOWN";
-        private static string WHITESPACE = " ";
-        private static string NEWLINE = "\n";
 
         static void Main(string[] args)
         {
