@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unary", "..\Unary\Unary.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MimeTypeTests", "MimeTypeTests\MimeTypeTests.csproj", "{91A14728-DF7A-44FF-9875-914C15808D56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThereIsNoSpoonEpisode1", "..\ThereIsNoSpoon\ThereIsNoSpoonEpisode1.csproj", "{794022C7-3D6E-4F8C-B93D-FF9916D25526}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThereIsNoSpoonEpisode1Tests", "..\ThereIsNoSpoonEpisode1Tests\ThereIsNoSpoonEpisode1Tests.csproj", "{63990E1B-C0C1-41CB-BA0D-9AD7589FC068}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{91A14728-DF7A-44FF-9875-914C15808D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91A14728-DF7A-44FF-9875-914C15808D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91A14728-DF7A-44FF-9875-914C15808D56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{794022C7-3D6E-4F8C-B93D-FF9916D25526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794022C7-3D6E-4F8C-B93D-FF9916D25526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794022C7-3D6E-4F8C-B93D-FF9916D25526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794022C7-3D6E-4F8C-B93D-FF9916D25526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63990E1B-C0C1-41CB-BA0D-9AD7589FC068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63990E1B-C0C1-41CB-BA0D-9AD7589FC068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63990E1B-C0C1-41CB-BA0D-9AD7589FC068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63990E1B-C0C1-41CB-BA0D-9AD7589FC068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
