@@ -76,7 +76,7 @@ namespace MimeType
                 string[] inputs = input.Split(' ');
                 string EXT = inputs[0]; // file extension
                 string MT = inputs[1]; // MIME type.
-                this.mimeTypes.Add(input, input);
+                this.mimeTypes.Add(EXT, MT);
             }
 
             public string ClassifyFilename(string input)
