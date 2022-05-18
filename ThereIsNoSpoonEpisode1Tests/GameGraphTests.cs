@@ -29,7 +29,7 @@ namespace ThereIsNoSpoonEpisode1Tests
         private static string VERTICAL_INPUTLINE2 = "0";
         private static string VERTICAL_INPUTLINE3 = ".";
         private static string VERTICAL_INPUTLINE4 = "0";
-        private static string VERTICAL_OUTPUT = "0 0 -1 -1 -1 -1\n0 2 -1 -1 0 4\n0 4 -1 -1 -1 -1\n";
+        private static string VERTICAL_OUTPUT = "0 0 -1 -1 0 2\n0 2 -1 -1 0 4\n0 4 -1 -1 -1 -1\n";
 
         [TestMethod]
         public void TestExample()
@@ -40,6 +40,7 @@ namespace ThereIsNoSpoonEpisode1Tests
             Assert.AreEqual(EXAMPLE_OUTPUT, gameGraph.ToString());
         }
 
+        [TestMethod]
         public void TestHorizontal()
         {
             ThereIsNoSpoonEpisode1.Player.GameGraph gameGraph = new ThereIsNoSpoonEpisode1.Player.GameGraph(HORIZONTAL_HEIGHT);
@@ -47,6 +48,7 @@ namespace ThereIsNoSpoonEpisode1Tests
             Assert.AreEqual(HORIZONTAL_OUTPUT, gameGraph.ToString());
         }
 
+        [TestMethod]
         public void TestVertical()
         {
             ThereIsNoSpoonEpisode1.Player.GameGraph gameGraph = new ThereIsNoSpoonEpisode1.Player.GameGraph(VERTICAL_HEIGHT);

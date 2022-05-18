@@ -9,6 +9,7 @@ namespace ThereIsNoSpoonEpisode1
 {
     /**
      * This is a solution to the puzzle at https://www.codingame.com/training/medium/there-is-no-spoon-episode-1
+     * Was successful as of 5/18/2022
      **/
     internal class Player
     {
@@ -59,21 +60,46 @@ namespace ThereIsNoSpoonEpisode1
                 {
                     if (s[i] == NODE)
                     {
-                        Node toModify = null;
                         nodesDictionary.Add(new Tuple<int, int>(i, yAxis), new Node(i, yAxis));
-                        // Check for a node at (x-1, y)
-                        if (i > 0 &&  s[i-1].Equals(NODE) && nodesDictionary.TryGetValue(new Tuple<int, int>(i - 1, yAxis), out toModify))
-                        {
-                            toModify.setXY2(i, yAxis);
-                        }
-                        // Check for a node at (x, y-1)
-                        if (yAxis > 0 && i <= graph[yAxis - 1].Length && graph[yAxis - 1][i].Equals(NODE) && nodesDictionary.TryGetValue(new Tuple<int, int>(i, yAxis - 1), out toModify))
-                        {
-                            toModify.setXY3(i, yAxis);
-                        }
+                        UpdateNeighbors(i, yAxis);
                     }
                 }
              }
+
+            /**
+             * Checks up and to the left of a node, and updates the first node that it finds on each axis, if any.
+             */
+            private void UpdateNeighbors(int xValue, int yValue)
+            {
+                Boolean found = false; // Tracks if a neighbor has been found
+                Node toModify = null;
+
+                // Look to the left
+                int xIdx = xValue - 1;
+                int yIdx = yValue;
+                while (xIdx >= 0 && !found)
+                {
+                    if (graph[yIdx][xIdx].Equals(NODE) && nodesDictionary.TryGetValue(new Tuple<int, int>(xIdx, yIdx), out toModify))
+                    {
+                        toModify.setXY2(xValue, yValue);
+                        found = true;
+                    }
+                    xIdx--;
+                }
+                // Look above
+                found = false;
+                xIdx = xValue;
+                yIdx = yValue - 1;
+                while (yIdx >= 0 && !found)
+                {
+                    if (graph[yIdx][xIdx].Equals(NODE) && nodesDictionary.TryGetValue(new Tuple<int, int>(xIdx, yIdx), out toModify))
+                    {
+                        toModify.setXY3(xValue, yValue);
+                        found = true;
+                    }
+                    yIdx--;
+                }
+            }
 
             public override string ToString()
             {
