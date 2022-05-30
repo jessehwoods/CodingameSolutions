@@ -5,6 +5,8 @@ using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ShadowOfTheKnightEp1Tests")]
+
 namespace ShadowOfTheKnightEp1
 {
     /**
