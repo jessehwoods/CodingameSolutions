@@ -10,6 +10,7 @@ namespace ShadowOfTheKnightEp1Tests
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
