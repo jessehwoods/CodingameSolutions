@@ -27,7 +27,7 @@ namespace ShadowOfTheKnightEp1
             int Y0 = int.Parse(inputs[1]);
 
             //Solver object to hold the data and get a solution.
-            Solver solver = new Solver(W, H, X0, Y0);
+            var solver = new Solver(W, H, X0, Y0);
 
             // game loop
             while (true)
@@ -54,6 +54,14 @@ namespace ShadowOfTheKnightEp1
             private int xPosition; // X position of most recently checked node
             private int yPosition; // Y position of most recently checked node
 
+            enum directionInput // Valid directions that can be included in input
+            {
+                U,
+                R,
+                D,
+                L,
+            }
+
             public Solver(int width, int height, int x0, int y0)
             {
                 if (width <= 0 || height <= 0 || x0 > width || x0 < 0 || y0 > height || y0 < 0)
@@ -71,15 +79,56 @@ namespace ShadowOfTheKnightEp1
             * It will calculate the next place to check, using a binary search algorithm, and then
             * update the state of the Solver object to reflect the returned value as the current position on the grid.
             * 
-            * Valid direction strings are U, UR, R, DR, D, DL, L or UL.
+            * Valid direction input strings are U, UR, R, DR, D, DL, L or UL.
             * 
             * Returns the coordinate of the next place to search as a string coordinate in the form "x y".
             */
             internal string NextMove(string bombDir)
             {
-                
-
+                //Make sure it's a valid size
+                if (bombDir.Length < 1 || bombDir.Length > 2)
+                {
+                    throw new ArgumentException("Input string must be one or two characters");
+                }
+                // Make the move for the first one
+                makeMove(bombDir[0], bombDir.Length == 2, false);
+                // Make the move the second one, if applicable
+                if (bombDir.Length == 2)
+                {
+                    makeMove(bombDir[1], true, true);
+                }
+                // Send a report of what was done
                 return String.Format("{0} {1}", xPosition, yPosition);
+            }
+
+            //
+            private void makeMove(char dir, Boolean twoPart, Boolean second)
+            {
+                directionInput direction;
+                if (Enum.TryParse(dir.ToString(), out direction))
+                {
+                    switch (direction)
+                    {
+                        case directionInput.U when (!second): // Can never be second
+                            yPosition = yPosition + ((width - yPosition) / 2);
+                            break;
+                        case directionInput.R when (!twoPart ^ second): // Can only be second if there are two
+                            xPosition = xPosition + ((height - xPosition) / 2);
+                            break;
+                        case directionInput.D when (!second): // Can never be second
+                            yPosition = yPosition - ((yPosition + 1) / 2);
+                            break;
+                        case directionInput.L when (!twoPart ^ second): // Can only be second if there are two
+                            xPosition = xPosition - ((xPosition + 1) / 2);
+                            break;
+                        default:
+                            throw new ArgumentException("Improperly formatted input direction.");
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException("That input direction was not recognized.");
+                }
             }
 
         }
