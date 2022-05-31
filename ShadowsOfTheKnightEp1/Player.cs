@@ -127,16 +127,19 @@ namespace ShadowOfTheKnightEp1
                     switch (direction)
                     {
                         case directionInput.U when (!second): // Can never be second
-                            yPosition = yPosition + ((width - yPosition) / 2);
+                            yPosition = yPosition - ((yPosition + 1) / 2); // Decrease y value
                             break;
+
                         case directionInput.R when (!twoPart ^ second): // Can only be second if there are two
-                            xPosition = xPosition + ((height - xPosition) / 2);
+                            xPosition = xPosition + ((width - xPosition) / 2); // Increase x value
                             break;
+
                         case directionInput.D when (!second): // Can never be second
-                            yPosition = yPosition - ((yPosition + 1) / 2);
+                            yPosition = yPosition + ((height - yPosition) / 2); //Increase y value
                             break;
+
                         case directionInput.L when (!twoPart ^ second): // Can only be second if there are two
-                            xPosition = xPosition - ((xPosition + 1) / 2);
+                            xPosition = xPosition - ((xPosition + 1) / 2); // Decrease x value
                             break;
                         default:
                             throw new ArgumentException("Improperly formatted input direction.");
