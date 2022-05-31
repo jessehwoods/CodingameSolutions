@@ -11,6 +11,7 @@ namespace ShadowOfTheKnightEp1
 {
     /**
      * This is a solution to the puzzle at https://www.codingame.com/training/medium/shadows-of-the-knight-episode-1
+     * Solution correct as of 5/31/2022
      **/
     class Player
     {
@@ -49,8 +50,10 @@ namespace ShadowOfTheKnightEp1
          */
         internal class Solver
         {
-            private int width; // Width of the grid
-            private int height; // Height of the grid
+            private int max_width; // Highest width value to use
+            private int max_height; // Highest height value to use
+            private int min_width; // Lowest width value to use
+            private int min_height; //Lowest height value to use
             private int xPosition; // X position of most recently checked node
             private int yPosition; // Y position of most recently checked node
 
@@ -73,8 +76,10 @@ namespace ShadowOfTheKnightEp1
                 {
                     throw new ArgumentException("Invalid game setup.");
                 }
-                this.width = width;
-                this.height = height;
+                this.max_width = width;
+                this.max_height = height;
+                this.min_width = 0;
+                this.min_height = 0;
                 this.xPosition = x0;
                 this.yPosition = y0;
             }
@@ -106,11 +111,11 @@ namespace ShadowOfTheKnightEp1
                     throw new ArgumentException("Input string must be one or two characters");
                 }
                 // Make the move for the first one
-                makeMove(bombDir[0], bombDir.Length == 2, false);
+                MakeMove(bombDir[0], bombDir.Length == 2, false);
                 // Make the move the second one, if applicable
                 if (bombDir.Length == 2)
                 {
-                    makeMove(bombDir[1], true, true);
+                    MakeMove(bombDir[1], true, true);
                 }
             }
 
@@ -119,7 +124,7 @@ namespace ShadowOfTheKnightEp1
              * twoPart tells you if there are two letters in the input string
              * second tells you if this is the second letter in the input string
              */
-            private void makeMove(char dir, Boolean twoPart, Boolean second)
+            private void MakeMove(char dir, Boolean twoPart, Boolean second)
             {
                 directionInput direction;
                 if (Enum.TryParse(dir.ToString(), out direction))
@@ -127,19 +132,23 @@ namespace ShadowOfTheKnightEp1
                     switch (direction)
                     {
                         case directionInput.U when (!second): // Can never be second
-                            yPosition = yPosition - ((yPosition + 1) / 2); // Decrease y value
+                            max_height = yPosition; // Can't be any farther down than this.
+                            yPosition = ReduceDistance(min_height, yPosition); // Decrease y value
                             break;
 
                         case directionInput.R when (!twoPart ^ second): // Can only be second if there are two
-                            xPosition = xPosition + ((width - xPosition) / 2); // Increase x value
+                            min_width = xPosition; // Can't be any farther left than this
+                            xPosition = ReduceDistance(xPosition, max_width); // Increase x value
                             break;
 
                         case directionInput.D when (!second): // Can never be second
-                            yPosition = yPosition + ((height - yPosition) / 2); //Increase y value
+                            min_height = yPosition; // Can't be less than this
+                            yPosition = ReduceDistance(yPosition, max_height); //Increase y value
                             break;
 
                         case directionInput.L when (!twoPart ^ second): // Can only be second if there are two
-                            xPosition = xPosition - ((xPosition + 1) / 2); // Decrease x value
+                            max_width = xPosition; // Can't be any farther right than this
+                            xPosition = ReduceDistance(min_width, xPosition); // Decrease x value
                             break;
                         default:
                             throw new ArgumentException("Improperly formatted input direction.");
@@ -151,6 +160,12 @@ namespace ShadowOfTheKnightEp1
                 }
             }
 
+            // Takes two numbers, gives back the ceiling
+            private int ReduceDistance(int low, int high)
+            { 
+               int toReturn = low + ((high - low) / 2);
+               return toReturn;
+            }
         }
     }
 }
