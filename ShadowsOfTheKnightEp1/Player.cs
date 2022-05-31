@@ -56,7 +56,7 @@ namespace ShadowOfTheKnightEp1
 
             public Solver(int width, int height, int x0, int y0)
             {
-                if (width < 0 || height < 0 || x0 > width || y0 > height)
+                if (width <= 0 || height <= 0 || x0 > width || x0 < 0 || y0 > height || y0 < 0)
                 {
                     throw new ArgumentException("Invalid game setup.");
                 }

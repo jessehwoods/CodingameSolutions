@@ -59,7 +59,6 @@ namespace ShadowOfTheKnightEp1Tests
             catch (Exception e)
             {
                 Assert.IsTrue(e is ArgumentException);
-                Assert.Fail();
             }
             // Bad x position, too high
             try
