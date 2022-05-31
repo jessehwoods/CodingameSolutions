@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A6D4E2AF-58F5-42E1-95C0-7990391EC982}</ProjectGuid>
+    <ProjectGuid>{5169244D-BC2B-440B-9750-41904F25CB8F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MimeType</RootNamespace>
-    <AssemblyName>MimeType</AssemblyName>
+    <RootNamespace>DeathFirstSearchEp1</RootNamespace>
+    <AssemblyName>DeathFirstSearchEp1</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,7 +36,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MTSolution.cs" />
+    <Compile Include="DFS1Solution.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

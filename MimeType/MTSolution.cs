@@ -15,7 +15,7 @@ namespace MimeType
      * Auto-generated code below aims at helping you parse
      * the standard input according to the problem statement.
      **/
-    internal class Solution
+    internal class MTSolution
     {
 
         private static string UNKNOWN = "UNKNOWN";

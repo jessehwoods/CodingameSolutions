@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using static ShadowOfTheKnightEp1.Player;
+using static ShadowOfTheKnightEp1.SoTK1Solution;
 
 namespace ShadowOfTheKnightEp1Tests
 {
