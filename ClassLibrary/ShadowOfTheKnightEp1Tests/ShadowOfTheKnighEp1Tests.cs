@@ -45,6 +45,7 @@ namespace ShadowOfTheKnightEp1Tests
             try
             {
                 solver = new Solver(0, 1, 0, 0);
+                Assert.Fail();
             } catch (Exception e)
             {
                 Assert.IsTrue(e is ArgumentException);
@@ -53,15 +54,18 @@ namespace ShadowOfTheKnightEp1Tests
             try
             {
                 solver = new Solver(1, 0, 0, 0);
+                Assert.Fail();
             }
             catch (Exception e)
             {
                 Assert.IsTrue(e is ArgumentException);
+                Assert.Fail();
             }
             // Bad x position, too high
             try
             {
                 solver = new Solver(1, 1, 2, 0);
+                Assert.Fail();
             }
             catch (Exception e)
             {
@@ -70,7 +74,8 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad x position, too low
             try
             {
-                solver = new Solver(0, 1, -1, 1);
+                solver = new Solver(1, 1, -1, 1);
+                Assert.Fail();
             }
             catch (Exception e)
             {
@@ -79,7 +84,8 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad y position, too high
             try
             {
-                solver = new Solver(0, 1, 0, 2);
+                solver = new Solver(1, 1, 0, 2);
+                Assert.Fail();
             }
             catch (Exception e)
             {
@@ -88,7 +94,8 @@ namespace ShadowOfTheKnightEp1Tests
             //Bad y position, too low
             try
             {
-                solver = new Solver(0, 1, 0, -1);
+                solver = new Solver(1, 1, 0, -1);
+                Assert.Fail();
             }
             catch (Exception e)
             {

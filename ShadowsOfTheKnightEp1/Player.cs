@@ -21,7 +21,7 @@ namespace ShadowOfTheKnightEp1
             inputs = Console.ReadLine().Split(' ');
             int W = int.Parse(inputs[0]); // width of the building.
             int H = int.Parse(inputs[1]); // height of the building.
-            Console.ReadLine(); // maximum number of turns before game over. Not needed so not saving.
+            Console.ReadLine(); // maximum number of turns before game over. Not needed, so not saving.
             inputs = Console.ReadLine().Split(' ');
             int X0 = int.Parse(inputs[0]);
             int Y0 = int.Parse(inputs[1]);
