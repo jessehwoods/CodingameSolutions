@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadowOfTheKnightEp1Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathFirstSearchEp1", "DeathFirstSearchEp1\DeathFirstSearchEp1.csproj", "{5169244D-BC2B-440B-9750-41904F25CB8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathFirstSearchEp1Tests", "..\..\DeathFirstSearchEp1Tests\DeathFirstSearchEp1Tests.csproj", "{4E34F79F-0BE5-41E5-A628-C46E10E21DD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{5169244D-BC2B-440B-9750-41904F25CB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5169244D-BC2B-440B-9750-41904F25CB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5169244D-BC2B-440B-9750-41904F25CB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E34F79F-0BE5-41E5-A628-C46E10E21DD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E34F79F-0BE5-41E5-A628-C46E10E21DD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E34F79F-0BE5-41E5-A628-C46E10E21DD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E34F79F-0BE5-41E5-A628-C46E10E21DD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
