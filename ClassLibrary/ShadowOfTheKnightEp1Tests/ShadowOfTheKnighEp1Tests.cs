@@ -113,120 +113,143 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestGridU()
         {
             //U means that the x will be unchanged and y will be increasing
-            string[] results = TestSolver.NextMove(TESTGRID_U_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_U_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_U_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[1]));
+            TestSolver.NextMove(TESTGRID_U_DIRECTION);
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getX());
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_U_DIRECTION);
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getX());
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_U_DIRECTION);
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getX());
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], TestSolver.getY());
         }
 
         [TestMethod]
         public void TestGridUR()
         {
             //UR means that the x will be increasing and y will be increasing
-            string[] results = TestSolver.NextMove(TESTGRID_UR_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_UR_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_UR_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[1]));
+            TestSolver.NextMove(TESTGRID_UR_DIRECTION);
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_UR_DIRECTION);
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_UR_DIRECTION);
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], TestSolver.getY());
         }
 
         [TestMethod]
         public void TestGridR()
         {
             //R means that the x will be increasing and y be unchanged
-            string[] results = TestSolver.NextMove(TESTGRID_R_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_R_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_R_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
+            TestSolver.NextMove(TESTGRID_R_DIRECTION);
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_R_DIRECTION);
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_R_DIRECTION);
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getY());
         }
 
         [TestMethod]
         public void TestGridDR()
         {
             //DR means that the x will be increasing and y be decreasing
-            string[] results = TestSolver.NextMove(TESTGRID_DR_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_DR_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_DR_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[1]));
+            TestSolver.NextMove(TESTGRID_DR_DIRECTION);
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_DR_DIRECTION);
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_DR_DIRECTION);
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], TestSolver.getY());
         }
 
         [TestMethod]
         public void TestGridD()
         {
             //D means that the x will not change and y will be decreasing
-            string[] results = TestSolver.NextMove(TESTGRID_D_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_D_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_D_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[1]));
+            TestSolver.NextMove(TESTGRID_D_DIRECTION);
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getX());
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_D_DIRECTION);
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getX());
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_D_DIRECTION);
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getX());
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], TestSolver.getY());
         }
 
         [TestMethod]
         public void TestGridDL()
         {
             //DL means that the x will be decreasing and y be decreasing
-            string[] results = TestSolver.NextMove(TESTGRID_DL_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_DL_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_DL_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[1]));
+            TestSolver.NextMove(TESTGRID_DL_DIRECTION);
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_DL_DIRECTION);
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_DL_DIRECTION);
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], TestSolver.getY());
         }
 
         [TestMethod]
         public void TestGridL()
         {
             //L means that the x will be decreasing and y be unchanged
-            string[] results = TestSolver.NextMove(TESTGRID_L_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_L_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_L_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
+            TestSolver.NextMove(TESTGRID_L_DIRECTION);
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_L_DIRECTION);
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_L_DIRECTION);
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_STARTING_VALUE, TestSolver.getY());
         }
 
         [TestMethod]
         public void TestGridUL()
         {
             //UL means that the x will be decreasing and y will be increasing
-            string[] results = TestSolver.NextMove(TESTGRID_UL_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_UL_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.NextMove(TESTGRID_UL_DIRECTION).Split(' ');
-            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[0]));
-            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[1]));
+            TestSolver.NextMove(TESTGRID_UL_DIRECTION);
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_UL_DIRECTION);
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], TestSolver.getY());
+            
+            TestSolver.NextMove(TESTGRID_UL_DIRECTION);
+            Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], TestSolver.getX());
+            Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], TestSolver.getY());
         }
+
+        [TestMethod]
+        public void TestProvidedExample()
+        {
+
+        }
+
     }
 }

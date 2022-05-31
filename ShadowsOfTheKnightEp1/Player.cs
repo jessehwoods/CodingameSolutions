@@ -34,11 +34,11 @@ namespace ShadowOfTheKnightEp1
             {
                 string bombDir = Console.ReadLine(); // the direction of the bombs from batman's current location (U, UR, R, DR, D, DL, L or UL)
 
-                //  Get the next move from the Solver object
-                string returnString = solver.NextMove(bombDir);
+                //  Put the next move from the Solver object
+                solver.NextMove(bombDir);
 
                 // Return the next move 
-                Console.WriteLine(returnString);
+                Console.WriteLine(solver.ToString());
             }
         }
 
@@ -62,6 +62,11 @@ namespace ShadowOfTheKnightEp1
                 L,
             }
 
+            public override string ToString()
+            {
+                return String.Format("{0} {1}", xPosition, yPosition);
+            }
+
             public Solver(int width, int height, int x0, int y0)
             {
                 if (width <= 0 || height <= 0 || x0 > width || x0 < 0 || y0 > height || y0 < 0)
@@ -74,16 +79,26 @@ namespace ShadowOfTheKnightEp1
                 this.yPosition = y0;
             }
 
+            internal int getX()
+            {
+                return xPosition;
+            }
+
+            internal int getY()
+            {
+                return yPosition;
+            }
+
             /**
             * This takes in a string representing the direction to the next solution. 
             * It will calculate the next place to check, using a binary search algorithm, and then
-            * update the state of the Solver object to reflect the returned value as the current position on the grid.
+            * updates the state of the Solver object to reflect the next move in the binary search.
             * 
             * Valid direction input strings are U, UR, R, DR, D, DL, L or UL.
             * 
             * Returns the coordinate of the next place to search as a string coordinate in the form "x y".
             */
-            internal string NextMove(string bombDir)
+            internal void NextMove(string bombDir)
             {
                 //Make sure it's a valid size
                 if (bombDir.Length < 1 || bombDir.Length > 2)
@@ -97,11 +112,13 @@ namespace ShadowOfTheKnightEp1
                 {
                     makeMove(bombDir[1], true, true);
                 }
-                // Send a report of what was done
-                return String.Format("{0} {1}", xPosition, yPosition);
             }
 
-            //
+            /**
+             * Helper class to interpret the direction and update the state of the Solver object.
+             * twoPart tells you if there are two letters in the input string
+             * second tells you if this is the second letter in the input string
+             */
             private void makeMove(char dir, Boolean twoPart, Boolean second)
             {
                 directionInput direction;
