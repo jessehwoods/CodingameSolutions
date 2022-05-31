@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace ShadowOfTheKnightEp1
 {
     /**
-     * This is a solution to the puzzle at https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1
+     * This is a solution to the puzzle at https://www.codingame.com/training/medium/shadows-of-the-knight-episode-1
      **/
     class Player
     {
