@@ -35,7 +35,7 @@ namespace ShadowOfTheKnightEp1
                 string bombDir = Console.ReadLine(); // the direction of the bombs from batman's current location (U, UR, R, DR, D, DL, L or UL)
 
                 //  Get the next move from the Solver object
-                string returnString = solver.nextMove(bombDir);
+                string returnString = solver.NextMove(bombDir);
 
                 // Return the next move 
                 Console.WriteLine(returnString);
@@ -49,10 +49,10 @@ namespace ShadowOfTheKnightEp1
          */
         internal class Solver
         {
-            private int width; //Width of the grid
-            private int height; //Height of the grid
-            private int xPosition; //X position of most recently checked node
-            private int yPosition; //Y position of most recently checked node
+            private int width; // Width of the grid
+            private int height; // Height of the grid
+            private int xPosition; // X position of most recently checked node
+            private int yPosition; // Y position of most recently checked node
 
             public Solver(int width, int height, int x0, int y0)
             {
@@ -75,9 +75,11 @@ namespace ShadowOfTheKnightEp1
             * 
             * Returns the coordinate of the next place to search as a string coordinate in the form "x y".
             */
-            internal string nextMove(string bombDir)
+            internal string NextMove(string bombDir)
             {
-                throw new NotImplementedException();
+                
+
+                return String.Format("{0} {1}", xPosition, yPosition);
             }
 
         }

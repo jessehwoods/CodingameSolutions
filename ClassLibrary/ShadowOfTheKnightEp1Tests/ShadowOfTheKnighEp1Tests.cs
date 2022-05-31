@@ -40,11 +40,10 @@ namespace ShadowOfTheKnightEp1Tests
         [TestMethod]
         public void InvalidSolverConstructor()
         {
-            Solver solver = null;
             // Bad width
             try
             {
-                solver = new Solver(0, 1, 0, 0);
+                var solver = new Solver(0, 1, 0, 0);
                 Assert.Fail();
             } catch (Exception e)
             {
@@ -53,7 +52,7 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad height
             try
             {
-                solver = new Solver(1, 0, 0, 0);
+                var solver = new Solver(1, 0, 0, 0);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -63,7 +62,7 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad x position, too high
             try
             {
-                solver = new Solver(1, 1, 2, 0);
+                var solver = new Solver(1, 1, 2, 0);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -73,7 +72,7 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad x position, too low
             try
             {
-                solver = new Solver(1, 1, -1, 1);
+                var solver = new Solver(1, 1, -1, 1);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -83,7 +82,7 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad y position, too high
             try
             {
-                solver = new Solver(1, 1, 0, 2);
+                var solver = new Solver(1, 1, 0, 2);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -93,7 +92,7 @@ namespace ShadowOfTheKnightEp1Tests
             //Bad y position, too low
             try
             {
-                solver = new Solver(1, 1, 0, -1);
+                var solver = new Solver(1, 1, 0, -1);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -106,7 +105,7 @@ namespace ShadowOfTheKnightEp1Tests
         [TestMethod]
         public void ValidSolverConstructor()
         {
-            Solver solver = new Solver(1, 1, 0, 0);
+            var solver = new Solver(1, 1, 0, 0);
             Assert.IsTrue(solver is Solver);
         }
 
@@ -114,13 +113,13 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestGridU()
         {
             //U means that the x will be unchanged and y will be increasing
-            string[] results = TestSolver.nextMove(TESTGRID_U_DIRECTION).Split(' ');
+            string[] results = TestSolver.NextMove(TESTGRID_U_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_U_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_U_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_U_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_U_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[1]));
         }
@@ -129,13 +128,13 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestGridUR()
         {
             //UR means that the x will be increasing and y will be increasing
-            string[] results = TestSolver.nextMove(TESTGRID_UR_DIRECTION).Split(' ');
+            string[] results = TestSolver.NextMove(TESTGRID_UR_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_UR_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_UR_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_UR_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_UR_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[1]));
         }
@@ -144,13 +143,13 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestGridR()
         {
             //R means that the x will be increasing and y be unchanged
-            string[] results = TestSolver.nextMove(TESTGRID_R_DIRECTION).Split(' ');
+            string[] results = TestSolver.NextMove(TESTGRID_R_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_R_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_R_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_R_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_R_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
         }
@@ -159,13 +158,13 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestGridDR()
         {
             //DR means that the x will be increasing and y be decreasing
-            string[] results = TestSolver.nextMove(TESTGRID_DR_DIRECTION).Split(' ');
+            string[] results = TestSolver.NextMove(TESTGRID_DR_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_DR_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_DR_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_DR_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_DR_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[1]));
         }
@@ -174,13 +173,13 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestGridD()
         {
             //D means that the x will not change and y will be decreasing
-            string[] results = TestSolver.nextMove(TESTGRID_D_DIRECTION).Split(' ');
+            string[] results = TestSolver.NextMove(TESTGRID_D_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_D_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_D_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_D_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_D_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[1]));
         }
@@ -189,13 +188,13 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestGridDL()
         {
             //DL means that the x will be decreasing and y be decreasing
-            string[] results = TestSolver.nextMove(TESTGRID_DL_DIRECTION).Split(' ');
+            string[] results = TestSolver.NextMove(TESTGRID_DL_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_DL_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_DL_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_DL_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_DL_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[1]));
         }
@@ -204,13 +203,13 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestGridL()
         {
             //L means that the x will be decreasing and y be unchanged
-            string[] results = TestSolver.nextMove(TESTGRID_L_DIRECTION).Split(' ');
+            string[] results = TestSolver.NextMove(TESTGRID_L_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_L_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_L_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_L_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_L_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_STARTING_VALUE, int.Parse(results[1]));
         }
@@ -219,13 +218,13 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestGridUL()
         {
             //UL means that the x will be decreasing and y will be increasing
-            string[] results = TestSolver.nextMove(TESTGRID_UL_DIRECTION).Split(' ');
+            string[] results = TestSolver.NextMove(TESTGRID_UL_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[0], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[0], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_UL_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_UL_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[1], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[1], int.Parse(results[1]));
-            results = TestSolver.nextMove(TESTGRID_UL_DIRECTION).Split(' ');
+            results = TestSolver.NextMove(TESTGRID_UL_DIRECTION).Split(' ');
             Assert.AreEqual(TESTGRID_DECREASING_VALUES[2], int.Parse(results[0]));
             Assert.AreEqual(TESTGRID_INCREASING_VALUES[2], int.Parse(results[1]));
         }
