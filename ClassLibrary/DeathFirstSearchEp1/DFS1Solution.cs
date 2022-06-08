@@ -58,7 +58,7 @@ namespace DeathFirstSearchEp1
     {
         private int nodes;
         HashSet<int> gateways;
-        HashSet<Link> links;
+        HashSet<Tuple<int, int>> links;
 
         public Solver(int nodes)
         {
@@ -67,7 +67,7 @@ namespace DeathFirstSearchEp1
             // Initialize the hashset of gateways
             gateways = new HashSet<int>();
             // Initialize the hashset of links
-            links = new HashSet<Link>();
+            links = new HashSet<Tuple<int, int>>();
         }
 
 
@@ -76,7 +76,7 @@ namespace DeathFirstSearchEp1
          */
         public void AddLink(int n1, int n2)
         {
-            links.Add(new Link(n1, n2));
+            links.Add(Tuple.Create<int, int>(n1, n2));
         }
 
         /**
@@ -120,7 +120,7 @@ namespace DeathFirstSearchEp1
                 // Add the links on each line
                 for (int j = 0; j < nodes; j++)
                 {
-                    Link linkToCheck = new Link(Math.Min(i, j), Math.Max(i, j));
+                    Tuple<int,int> linkToCheck = Tuple.Create<int, int>(Math.Min(i, j), Math.Max(i, j));
                     if (links.Contains(linkToCheck))
                     {
                         stringBuilder.Append(String.Format(",({0},{1})", Math.Min(i, j), Math.Max(i, j)));
@@ -130,43 +130,6 @@ namespace DeathFirstSearchEp1
                 stringBuilder.Append('\n');
             }
             return stringBuilder.ToString();
-        }
-
-        private class Link
-        {
-            private int n1;
-            private int n2;
-
-            public Link(int n1, int n2)
-            {
-                this.n1 = n1;
-                this.n2 = n2;
-            }
-
-            public int GetFirst()
-            {
-                return n1;
-            }
-
-            public int GetSecond()
-            {
-                return n2;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (obj.GetType() == typeof(Link))
-                {
-                    Link link = (Link)obj;
-                    return link.GetFirst() == this.GetFirst() && link.GetSecond() == this.GetSecond();
-                }
-                return false;
-            }
-
-            public override int GetHashCode()
-            {
-                return n1.GetHashCode() ^ n2.GetHashCode();
-            }
         }
     }
 }
