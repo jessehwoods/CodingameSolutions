@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ShadowOfTheKnightEp1;
 using System;
-using static ShadowOfTheKnightEp1.SoTK1Solution;
 
 namespace ShadowOfTheKnightEp1Tests
 {
@@ -13,7 +13,7 @@ namespace ShadowOfTheKnightEp1Tests
         private readonly int[] TESTGRID_PROPERTIES = {9, 4}; //Properties are in the format width, height, x position, y position
         private readonly int[] TESTGRID_INCREASING_VALUES = {6, 7, 8};
         private readonly int[] TESTGRID_DECREASING_VALUES = {2, 1, 0};
-        private Solver TestSolver;
+        private Player.Solver TestSolver;
 
         private readonly string TESTGRID_U_DIRECTION = "U"; // Direction to input if final position (4, 8)
 
@@ -34,7 +34,7 @@ namespace ShadowOfTheKnightEp1Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            TestSolver = new Solver(TESTGRID_PROPERTIES[0], TESTGRID_PROPERTIES[0], TESTGRID_PROPERTIES[1], TESTGRID_PROPERTIES[1]);
+            TestSolver = new Player.Solver(TESTGRID_PROPERTIES[0], TESTGRID_PROPERTIES[0], TESTGRID_PROPERTIES[1], TESTGRID_PROPERTIES[1]);
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad width
             try
             {
-                var solver = new Solver(0, 1, 0, 0);
+                var solver = new Player.Solver(0, 1, 0, 0);
                 Assert.Fail();
             } catch (Exception e)
             {
@@ -52,7 +52,7 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad height
             try
             {
-                var solver = new Solver(1, 0, 0, 0);
+                var solver = new Player.Solver(1, 0, 0, 0);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -62,7 +62,7 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad x position, too high
             try
             {
-                var solver = new Solver(1, 1, 2, 0);
+                var solver = new Player.Solver(1, 1, 2, 0);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -72,7 +72,7 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad x position, too low
             try
             {
-                var solver = new Solver(1, 1, -1, 1);
+                var solver = new Player.Solver(1, 1, -1, 1);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -82,7 +82,7 @@ namespace ShadowOfTheKnightEp1Tests
             // Bad y position, too high
             try
             {
-                var solver = new Solver(1, 1, 0, 2);
+                var solver = new Player.Solver(1, 1, 0, 2);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -92,7 +92,7 @@ namespace ShadowOfTheKnightEp1Tests
             //Bad y position, too low
             try
             {
-                var solver = new Solver(1, 1, 0, -1);
+                var solver = new Player.Solver(1, 1, 0, -1);
                 Assert.Fail();
             }
             catch (Exception e)
@@ -105,8 +105,8 @@ namespace ShadowOfTheKnightEp1Tests
         [TestMethod]
         public void ValidSolverConstructor()
         {
-            var solver = new Solver(1, 1, 0, 1);
-            Assert.IsTrue(solver is Solver);
+            var solver = new Player.Solver(1, 1, 0, 1);
+            Assert.IsTrue(solver is Player.Solver);
             Assert.AreEqual(0, solver.getX());
             Assert.AreEqual(1, solver.getY());
         }
@@ -251,7 +251,7 @@ namespace ShadowOfTheKnightEp1Tests
         public void TestProvidedExample()
         {
             // This is a series of moves offered as an example on the site
-            TestSolver = new Solver(4, 8, 2, 3); // Starting at (2, 3)
+            TestSolver = new Player.Solver(4, 8, 2, 3); // Starting at (2, 3)
             // Final is at (3, 7)
             TestSolver.NextMove(TESTGRID_DR_DIRECTION);
             Assert.AreEqual(3, TestSolver.getX());
