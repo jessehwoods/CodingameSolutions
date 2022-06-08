@@ -65,11 +65,18 @@ namespace DeathFirstSearchEp1
             this.nodes = nodes;
         }
 
+
+        /**
+         * Takes in two indexes and adds a link between them.
+         */
         public void AddLink(int n1, int n2)
         {
 
         }
 
+        /**
+         * Takes a node index. That index will be a gateway node.
+         */
         public void AddGateway(int idx)
         {
 
@@ -85,12 +92,13 @@ namespace DeathFirstSearchEp1
         }
 
         /**
-         * Returns a string with a separate line for each node and all links that include the node separated by commas.
-         * 
-         * So, a set of three nodes (0, 1, and 2) with two links ( (0,1) and (1,2) ) would return the following:
+         * Returns a string with a separate line for each node and all links that include the node separated by commas. An asterisk * at
+         * the beginning of the line will represent a gateway node.
+         *  
+         * So, a set of three nodes (0, 1, and *2) with two links ( (0,1) and (1,2) ) would return the following:
          * 0,(0,1)
          * 1,(0,1),(1,2)
-         * 2,(1,2)
+         * *2,(1,2)
          * 
          */
         public override string ToString()
