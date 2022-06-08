@@ -45,8 +45,6 @@ namespace DeathFirstSearchEp1
                 // Write an action using Console.WriteLine()
                 // To debug: Console.Error.WriteLine("Debug messages...");
 
-
-                // Example: 0 1 are the indices of the nodes you wish to sever the link between
                 Console.WriteLine(solver.Solve(SI));
             }
         }
@@ -59,10 +57,17 @@ namespace DeathFirstSearchEp1
     internal class Solver
     {
         private int nodes;
+        HashSet<int> gateways;
+        HashSet<Link> links;
 
         public Solver(int nodes)
         {
+            // Number of nodes in the graph
             this.nodes = nodes;
+            // Initialize the hashset of gateways
+            gateways = new HashSet<int>();
+            // Initialize the hashset of links
+            links = new HashSet<Link>();
         }
 
 
@@ -71,7 +76,7 @@ namespace DeathFirstSearchEp1
          */
         public void AddLink(int n1, int n2)
         {
-
+            links.Add(new Link(n1, n2));
         }
 
         /**
@@ -79,7 +84,7 @@ namespace DeathFirstSearchEp1
          */
         public void AddGateway(int idx)
         {
-
+            gateways.Add(idx);
         }
 
         /**
@@ -103,7 +108,65 @@ namespace DeathFirstSearchEp1
          */
         public override string ToString()
         {
-            return base.ToString();
+            StringBuilder stringBuilder = new StringBuilder(); // To return
+            for (int i = 0; i < nodes; i++)
+            {
+                // Print the node number, checking for gateways
+                if (gateways.Contains(i))
+                {
+                    stringBuilder.Append('*');
+                }
+                stringBuilder.Append(i);
+                // Add the links on each line
+                for (int j = 0; j < nodes; j++)
+                {
+                    Link linkToCheck = new Link(Math.Min(i, j), Math.Max(i, j));
+                    if (links.Contains(linkToCheck))
+                    {
+                        stringBuilder.Append(String.Format(",({0},{1})", Math.Min(i, j), Math.Max(i, j)));
+                    }
+                }
+                // Add a newline character
+                stringBuilder.Append('\n');
+            }
+            return stringBuilder.ToString();
+        }
+
+        private class Link
+        {
+            private int n1;
+            private int n2;
+
+            public Link(int n1, int n2)
+            {
+                this.n1 = n1;
+                this.n2 = n2;
+            }
+
+            public int GetFirst()
+            {
+                return n1;
+            }
+
+            public int GetSecond()
+            {
+                return n2;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj.GetType() == typeof(Link))
+                {
+                    Link link = (Link)obj;
+                    return link.GetFirst() == this.GetFirst() && link.GetSecond() == this.GetSecond();
+                }
+                return false;
+            }
+
+            public override int GetHashCode()
+            {
+                return n1.GetHashCode() ^ n2.GetHashCode();
+            }
         }
     }
 }
