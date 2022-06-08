@@ -81,5 +81,10 @@ namespace DeathFirstSearchEp1
         {
             return null;
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
