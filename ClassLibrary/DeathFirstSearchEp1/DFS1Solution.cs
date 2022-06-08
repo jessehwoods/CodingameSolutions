@@ -56,18 +56,15 @@ namespace DeathFirstSearchEp1
      */
     internal class Solver
     {
-        private int nodes;
+        private HashSet<Tuple<int,int>>[] nodes;
         HashSet<int> gateways;
-        HashSet<Tuple<int, int>> links;
-
         public Solver(int nodes)
         {
             // Number of nodes in the graph
-            this.nodes = nodes;
+            this.nodes = new HashSet<Tuple<int, int>>[nodes];
             // Initialize the hashset of gateways
             gateways = new HashSet<int>();
             // Initialize the hashset of links
-            links = new HashSet<Tuple<int, int>>();
         }
 
 
@@ -76,7 +73,16 @@ namespace DeathFirstSearchEp1
          */
         public void AddLink(int n1, int n2)
         {
-            links.Add(Tuple.Create<int, int>(n1, n2));
+            if (nodes[n1] == null)
+            {
+                nodes[n1] = new HashSet<Tuple<int, int>>();
+            }
+            if (nodes[n2] == null)
+            {
+                nodes[n2] = new HashSet<Tuple<int, int>>();
+            }
+            nodes[n1].Add(Tuple.Create<int, int>(n1, n2));
+            nodes[n2].Add(Tuple.Create<int, int>(n2, n1));
         }
 
         /**
@@ -89,7 +95,7 @@ namespace DeathFirstSearchEp1
 
         /**
          * Takes in an index, modifies the internal representation of the graph to remove the shortest path to a gateway, then returns
-         * a string representation of the removed link.
+         * a string representation of the removed link in the form "x y".
          */
         public string Solve(int input)
         {
@@ -109,7 +115,7 @@ namespace DeathFirstSearchEp1
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder(); // To return
-            for (int i = 0; i < nodes; i++)
+            for (int i = 0; i < nodes.Length; i++)
             {
                 // Print the node number, checking for gateways
                 if (gateways.Contains(i))
@@ -118,10 +124,10 @@ namespace DeathFirstSearchEp1
                 }
                 stringBuilder.Append(i);
                 // Add the links on each line
-                for (int j = 0; j < nodes; j++)
+                for (int j = 0; j < nodes.Length; j++)
                 {
-                    Tuple<int,int> linkToCheck = Tuple.Create<int, int>(Math.Min(i, j), Math.Max(i, j));
-                    if (links.Contains(linkToCheck))
+                    Tuple<int,int> linkToCheck = Tuple.Create<int, int>(i, j);
+                    if (nodes [i] != null && nodes[i].Contains(linkToCheck))
                     {
                         stringBuilder.Append(String.Format(",({0},{1})", Math.Min(i, j), Math.Max(i, j)));
                     }
