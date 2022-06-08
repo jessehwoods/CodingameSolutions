@@ -15,11 +15,15 @@ namespace DeathFirstSearchEp1
     {
         static void Main(string[] args)
         {
+
             string[] inputs;
             inputs = Console.ReadLine().Split(' ');
             int N = int.Parse(inputs[0]); // the total number of nodes in the level, including the gateways
             int L = int.Parse(inputs[1]); // the number of links
             int E = int.Parse(inputs[2]); // the number of exit gateways
+
+            var solver = new Solver(N);
+
             for (int i = 0; i < L; i++)
             {
                 inputs = Console.ReadLine().Split(' ');
@@ -41,8 +45,41 @@ namespace DeathFirstSearchEp1
 
 
                 // Example: 0 1 are the indices of the nodes you wish to sever the link between
-                Console.WriteLine("0 1");
+                Console.WriteLine(solver.Solve(SI));
             }
+        }
+    }
+
+    /**
+     * Internal class that takes in the information about the graph and can then be used to solve it.
+     * 
+     */
+    internal class Solver
+    {
+        private int nodes;
+
+        public Solver(int nodes)
+        {
+            this.nodes = nodes;
+        }
+
+        public void AddLink(int n1, int n2)
+        {
+
+        }
+
+        public void AddGateway(int idx)
+        {
+
+        }
+
+        /**
+         * Takes in an index, modifies the internal representation of the graph to remove the shortest path to a gateway, then returns
+         * a string representation of the removed link.
+         */
+        public string Solve(int input)
+        {
+            return null;
         }
     }
 }
