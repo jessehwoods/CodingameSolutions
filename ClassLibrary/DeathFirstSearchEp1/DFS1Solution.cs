@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DeathFirstSearchEp1Tests")]
+
 namespace DeathFirstSearchEp1
 {
 
@@ -82,6 +84,15 @@ namespace DeathFirstSearchEp1
             return null;
         }
 
+        /**
+         * Returns a string with a separate line for each node and all links that include the node separated by commas.
+         * 
+         * So, a set of three nodes (0, 1, and 2) with two links ( (0,1) and (1,2) ) would return the following:
+         * 0,(0,1)
+         * 1,(0,1),(1,2)
+         * 2,(1,2)
+         * 
+         */
         public override string ToString()
         {
             return base.ToString();
