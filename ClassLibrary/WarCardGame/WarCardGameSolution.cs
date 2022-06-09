@@ -8,6 +8,7 @@ namespace WarCardGame
 
     /**
      * Solution for the puzzle at https://www.codingame.com/training/medium/winamax-battle
+     * Successful as of 6/9/2022
      **/
     class Solution
     {
@@ -141,9 +142,29 @@ namespace WarCardGame
             * If there's a winner then it returns a string in the format "{0} {1}", player_number, turns.
             * If a player runs out of cards during a war, returns the appropriate string for pat.
             */
-            internal bool Solve()
+            internal string Solve()
             {
-                throw new NotImplementedException();
+                int rounds = 0;
+                while(player1Deck.Count > 0 && player2Deck.Count > 0){
+                    rounds++;
+                    try
+                    {
+                        Move();
+                    } catch (InvalidOperationException) {
+                        return PAT;
+                    }
+                }
+                int player = 0; // Default value to be replaced.
+                switch (player1Deck.Count == 0)
+                {
+                    case true :
+                        player = 2;
+                        break;
+                    case false:
+                        player = 1;
+                        break;
+                }
+                return String.Format("{0} {1}", player, rounds);
             }
 
             public override string ToString()

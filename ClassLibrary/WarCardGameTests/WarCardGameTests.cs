@@ -94,13 +94,13 @@ namespace WarCardGameTests
         [TestMethod]
         public void TestSolvePlayer1Wins()
         {
-            for (int i = 0; i < PLAYER1_CARDS1.Length; i++)
+            for (int i = 0; i < PLAYER1_CARDS2.Length; i++)
             {
-                testSolver.AddCard(1, PLAYER1_CARDS1[i]);
+                testSolver.AddCard(1, PLAYER1_CARDS2[i]);
             }
-            for (int i = 0; i < PLAYER2_CARDS1.Length; i++)
+            for (int i = 0; i < PLAYER2_CARDS2.Length; i++)
             {
-                testSolver.AddCard(2, PLAYER2_CARDS1[i]);
+                testSolver.AddCard(2, PLAYER2_CARDS2[i]);
             }
             Assert.AreEqual(PLAYER1_WIN, testSolver.Solve());
         }
