@@ -83,9 +83,57 @@ namespace WarCardGame
                 }
             }
 
+            /**
+             * Draws two cards and compares them. Gives the cards to the winner (first player card, then second player card)
+             * If tied, draws three cards and adds them to the pot then compares again until no tie.
+             */
             internal void Move()
             {
-                throw new NotImplementedException();
+                // Get the cards ready
+                var player1CardsToWin = new Queue<int>();
+                var player2CardsToWin = new Queue<int>();
+
+                var player1Card = player1Deck.Dequeue();
+                player1CardsToWin.Enqueue(player1Card);
+
+                var player2Card = player2Deck.Dequeue();
+                player2CardsToWin.Enqueue(player2Card);
+
+                var tied = player1Card == player2Card; // Used to check for tie and determine winner
+                while (tied) // War happens here
+                {
+                    for(int i = 0; i < 3; i++) //Draw three cards
+                    {
+                        player1CardsToWin.Enqueue(player1Deck.Dequeue());
+                        player2CardsToWin.Enqueue(player2Deck.Dequeue());
+                    }
+                    player1Card = player1Deck.Dequeue();
+                    player1CardsToWin.Enqueue(player1Card);
+
+                    player2Card = player2Deck.Dequeue();
+                    player2CardsToWin.Enqueue(player2Card);
+
+                    tied = player1Card == player2Card;
+                }
+                // Assert: the cards are not tied
+                Queue<int> deckToAdd = null;
+                switch (player1Card > player2Card)
+                {
+                    case true:
+                        deckToAdd = player1Deck;
+                        break;
+                    case false:
+                        deckToAdd = player2Deck;
+                        break;
+                }
+                foreach (var card in player1CardsToWin)
+                {
+                    deckToAdd.Enqueue(card);
+                }
+                foreach (var card in player2CardsToWin)
+                {
+                    deckToAdd.Enqueue(card);
+                }
             }
 
             /**
