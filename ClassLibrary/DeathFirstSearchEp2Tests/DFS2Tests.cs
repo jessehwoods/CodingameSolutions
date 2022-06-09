@@ -1,15 +1,15 @@
 ﻿
-
-/**
- * Tests for a solution to the puzzle at https://www.codingame.com/training/medium/death-first-search-episode-1
- */
-
-namespace DeathFirstSearchEp1Tests
+namespace DeathFirstSearchEp2Tests
 {
 
-    using DeathFirstSearchEp1;
+    using DeathFirstSearchEp2;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+
+    [TestClass]
+    public class DFS2Tests
+    {
+
 
     [TestClass]
     public class DFS1Tests
@@ -72,16 +72,23 @@ namespace DeathFirstSearchEp1Tests
         }
 
         [TestMethod]
-        public void TestSolveBigger()
+        public void TestSolveDoubleGate()
         {
-            testSolver = new Solver(4);
+            testSolver = new Solver(6);
             testSolver.AddLink(0, 1);
             testSolver.AddLink(0, 2);
-            testSolver.AddLink(1, 3);
-            testSolver.AddLink(2, 3);
+            testSolver.AddLink(0, 3);
+            testSolver.AddLink(2, 4);
+            testSolver.AddLink(2, 5);
+            testSolver.AddLink(3, 5);
+            testSolver.AddLink(4, 5);
+            testSolver.AddLink(5, 6);
+            testSolver.AddGateway(1);
             testSolver.AddGateway(3);
-            Assert.AreEqual("1 3", testSolver.Solve(0));
-            Assert.AreEqual("2 3", testSolver.Solve(1));
+            testSolver.AddGateway(6);
+            Assert.AreEqual("1 3", testSolver.Solve(4));
+            Assert.AreEqual("0 1", testSolver.Solve(2));
         }
     }
+}
 }

@@ -1,12 +1,10 @@
-﻿
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DeathFirstSearchEp1Tests")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DeathFirstSearchEp2Tests")]
 
-namespace DeathFirstSearchEp1
+namespace DeathFirstSearchEp2
 {
 
     /**
-     * This is a solution to the puzzle at https://www.codingame.com/training/medium/death-first-search-episode-1
-     * successful as of 6/9/2022
+     * This is a solution to the puzzle at https://www.codingame.com/training/hard/death-first-search-episode-2
      */
 
     using System;
@@ -58,11 +56,11 @@ namespace DeathFirstSearchEp1
     internal class Solver
     {
         // Each cell of the array represents a node, with the tuples representing links to other nodes
-        private HashSet<Tuple<int,int>>[] nodes;
-        
+        private HashSet<Tuple<int, int>>[] nodes;
+
         // Holds the indexes of any nodes that are gateways.
         HashSet<int> gateways;
-        
+
         public Solver(int nodes)
         {
             // Number of nodes in the graph
@@ -104,8 +102,8 @@ namespace DeathFirstSearchEp1
          */
         public string Solve(int input)
         {
-            var toProcess = new Queue < Tuple<int, int>>(); // This will be loaded with links to check for a gateway
-            var staging = new Queue < Tuple<int, int> >(); // This will be loaded with links to have their sub-links checked
+            var toProcess = new Queue<Tuple<int, int>>(); // This will be loaded with links to check for a gateway
+            var staging = new Queue<Tuple<int, int>>(); // This will be loaded with links to have their sub-links checked
             foreach (Tuple<int, int> t in nodes[input]) // Load the initial group to process
             {
                 toProcess.Enqueue(t);
@@ -115,13 +113,13 @@ namespace DeathFirstSearchEp1
                 while (toProcess.Count > 0)
                 {
                     var t = toProcess.Dequeue();
-                    if ( gateways.Contains(t.Item2) ) // Found a link to a gateway
+                    if (gateways.Contains(t.Item2)) // Found a link to a gateway
                     {
                         // Remove links
                         nodes[t.Item1].Remove(t);
                         nodes[t.Item2].Remove(new Tuple<int, int>(t.Item2, t.Item1));
                         // Return string
-                        return String.Format("{0} {1}", Math.Min( t.Item1, t.Item2), Math.Max( t.Item1, t.Item2) );
+                        return String.Format("{0} {1}", Math.Min(t.Item1, t.Item2), Math.Max(t.Item1, t.Item2));
                     }
                     // Not a link to a gateway, so let's add it to have its sub-links examined
                     staging.Enqueue(t);
@@ -162,8 +160,8 @@ namespace DeathFirstSearchEp1
                 // Add the links on each line
                 for (int j = 0; j < nodes.Length; j++)
                 {
-                    Tuple<int,int> linkToCheck = Tuple.Create<int, int>(i, j);
-                    if (nodes [i] != null && nodes[i].Contains(linkToCheck))
+                    Tuple<int, int> linkToCheck = Tuple.Create<int, int>(i, j);
+                    if (nodes[i] != null && nodes[i].Contains(linkToCheck))
                     {
                         stringBuilder.Append(String.Format(",({0},{1})", Math.Min(i, j), Math.Max(i, j)));
                     }

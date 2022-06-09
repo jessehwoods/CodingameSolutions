@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarCardGame", "WarCardGame\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarCardGameTests", "WarCardGameTests\WarCardGameTests.csproj", "{22127168-5513-4EA5-A225-E70645FD2DC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathFirstSearchEp2", "DeathFirstSearchEp2\DeathFirstSearchEp2.csproj", "{12AD04D7-41B7-4D8B-AB9D-E951AA9EF507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathFirstSearchEp2Tests", "DeathFirstSearchEp2Tests\DeathFirstSearchEp2Tests.csproj", "{F42F533C-F11E-4812-A621-DC75E71F6FDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,14 @@ Global
 		{22127168-5513-4EA5-A225-E70645FD2DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22127168-5513-4EA5-A225-E70645FD2DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22127168-5513-4EA5-A225-E70645FD2DC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12AD04D7-41B7-4D8B-AB9D-E951AA9EF507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12AD04D7-41B7-4D8B-AB9D-E951AA9EF507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12AD04D7-41B7-4D8B-AB9D-E951AA9EF507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12AD04D7-41B7-4D8B-AB9D-E951AA9EF507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F42F533C-F11E-4812-A621-DC75E71F6FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42F533C-F11E-4812-A621-DC75E71F6FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42F533C-F11E-4812-A621-DC75E71F6FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42F533C-F11E-4812-A621-DC75E71F6FDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
