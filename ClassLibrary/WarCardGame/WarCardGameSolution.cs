@@ -31,7 +31,7 @@ namespace WarCardGame
             // Write an answer using Console.WriteLine()
             // To debug: Console.Error.WriteLine("Debug messages...");
 
-            Console.WriteLine(solver.solve());
+            Console.WriteLine(solver.Solve());
         }
 
         internal class Solver
