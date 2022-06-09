@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+using MimeType;
 
 /**
  * Tests for a solution to the puzzle at https://www.codingame.com/training/easy/mime-type
