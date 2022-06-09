@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MimeType;
 
 /**
  * Tests for a solution to the puzzle at https://www.codingame.com/training/easy/mime-type
@@ -10,7 +9,7 @@ namespace MimeTypeTests
     public class MimeTypeTests
     {
 
-        private MimeType.Solution.Classifier classifier;
+        private MimeType.MTSolution.Classifier classifier;
 
         private static string OUTPUTUNKNOWN = "UNKNOWN";
 
@@ -41,7 +40,7 @@ namespace MimeTypeTests
         [TestInitialize]
         public void TestInitialize()
         {
-            classifier = new MimeType.Solution.Classifier();
+            classifier = new MimeType.MTSolution.Classifier();
         }
 
         // Check an empty classifier will return "UNKNOWN" to everything.
