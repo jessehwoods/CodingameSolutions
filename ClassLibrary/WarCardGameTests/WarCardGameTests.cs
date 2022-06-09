@@ -15,8 +15,8 @@ namespace WarCardGameTests
 
         private string[] PLAYER1_CARDS2 = { "9S", "8D", "KH", "7D", "5H", "9S" };
         private string[] PLAYER2_CARDS2 = { "7H", "5C", "QC", "2C", "4H", "8D" };
-        private string SOLVER_STRING_FILLED2 = "Player 1: 9 8 13 7 5 6\nPlayer 2: 7 5 12 2 4 6";
-        private string SOLVER_STRING_NONWAR = "Player 1: 8 13 7 5 6 9 7\nPlayer 2: 5 12 2 4 6";
+        private string SOLVER_STRING_FILLED2 = "Player 1: 9 8 13 7 5 9\nPlayer 2: 7 5 12 2 4 8";
+        private string SOLVER_STRING_NONWAR = "Player 1: 8 13 7 5 9 9 7\nPlayer 2: 5 12 2 4 8";
         private string PLAYER1_WIN = "1 6";
 
         [TestInitialize]
