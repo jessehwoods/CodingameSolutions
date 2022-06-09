@@ -1,9 +1,9 @@
-﻿
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("WarCardGameTests")]
+
 namespace WarCardGame
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
     using System.Text;
 
     /**
@@ -37,7 +37,7 @@ namespace WarCardGame
         internal class Solver
         {
             private static string PAT = "PAT"; // Return in event of a tie
-            private Queue<int> player1Deck; 
+            private Queue<int> player1Deck;
             private Queue<int> player2Deck;
             private Dictionary<char, int> FACE_CARDS = new Dictionary<char, int>
             {
@@ -58,44 +58,63 @@ namespace WarCardGame
              */
             internal void AddCard(int player, string valueAndSuit)
             {
+                Queue<int> deckToUse = null;
+                //Figure out which deck to use
+                switch (player)
+                {
+                    case 1:
+                        deckToUse = player1Deck;
+                        break;
+                    case 2:
+                        deckToUse = player2Deck;
+                        break;
+                    default:
+                        throw new ArgumentException("Player number not recognized.");
+                }
                 // Don't care about the suit, so stripping off the last character
-                string value = valueAndSuit.Substring(0, valueAndSuit.Length - 2);
+                string value = valueAndSuit.Substring(0, valueAndSuit.Length - 1);
                 if (int.TryParse(value, out int x)) // Value is a a number
                 {
-                    player1Deck.Enqueue(x);
+                    deckToUse.Enqueue(x);
                 }
                 else if (FACE_CARDS.TryGetValue(value[0], out x))// Value is a face card
                 {
-                    player2Deck.Enqueue(x);
+                    deckToUse.Enqueue(x);
                 }
             }
 
-            /**
-             * Compares cards until there is a winner or pat, 
-             * If there's a winner then it returns a string in the format "{0} {1}", player_number, turns.
-             * If a player runs out of cards during a war, returns the appropriate string for pat.
-             */
-            internal string Solve()
+            internal void Move()
             {
-                //TODO
+                throw new NotImplementedException();
+            }
 
+            /**
+            * Compares cards until there is a winner or pat, 
+            * If there's a winner then it returns a string in the format "{0} {1}", player_number, turns.
+            * If a player runs out of cards during a war, returns the appropriate string for pat.
+            */
+            internal bool Solve()
+            {
+                throw new NotImplementedException();
             }
 
             public override string ToString()
             {
                 var stringBuilder = new StringBuilder();
-                stringBuilder.Append("Player 1 deck: ");
+                stringBuilder.Append("Player 1:");
                 foreach (var card in player1Deck)
                 {
-                    stringBuilder.Append(card + ",");
+                    stringBuilder.Append(" " + card);
                 }
-                stringBuilder.Append("Player 2 deck: ");
+                stringBuilder.Append("\nPlayer 2:");
                 foreach (var card in player2Deck)
                 {
-                    stringBuilder.Append(card + ",");
+                    stringBuilder.Append(" " + card);
                 }
                 return stringBuilder.ToString();
             }
+
         }
     }
 }
+
