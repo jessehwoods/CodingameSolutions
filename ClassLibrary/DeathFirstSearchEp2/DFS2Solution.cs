@@ -8,6 +8,7 @@ namespace DeathFirstSearchEp2
      */
 
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Text;
     class Player
@@ -55,16 +56,15 @@ namespace DeathFirstSearchEp2
      */
     internal class Solver
     {
-        // Each cell of the array represents a node, with the tuples representing links to other nodes
-        private HashSet<Tuple<int, int>>[] nodes;
+        // Each cell of the array contains a node with the links to neighboring nodes and the number of connected gateways
+        private LinkStore[] nodes;
 
         // Holds the indexes of any nodes that are gateways.
         HashSet<int> gateways;
 
         public Solver(int nodes)
         {
-            // Number of nodes in the graph
-            this.nodes = new HashSet<Tuple<int, int>>[nodes];
+            this.nodes = new LinkStore[nodes];
             // Initialize the hashset of gateways
             gateways = new HashSet<int>();
         }
@@ -75,21 +75,26 @@ namespace DeathFirstSearchEp2
          */
         public void AddLink(int n1, int n2)
         {
+            if (gateways.Count != 0)
+            {
+                throw new InvalidOperationException("Cannot add links after gateways have been added.");
+            }
             // Handle the case of an empty cell
             if (nodes[n1] == null)
             {
-                nodes[n1] = new HashSet<Tuple<int, int>>();
+                nodes[n1] = new LinkStore();
             }
             if (nodes[n2] == null)
             {
-                nodes[n2] = new HashSet<Tuple<int, int>>();
+                nodes[n2] = new LinkStore();
             }
-            nodes[n1].Add(Tuple.Create<int, int>(n1, n2));
-            nodes[n2].Add(Tuple.Create<int, int>(n2, n1));
+            nodes[n1].StoreLink(n1, n2);
+            nodes[n2].StoreLink(n2, n1);
         }
 
         /**
          * Takes a node index. That index will be a gateway node.
+         * Assumed be done after all nodes and links are created, so that adding gateways can update neighboring nodes
          */
         public void AddGateway(int idx)
         {
@@ -170,6 +175,43 @@ namespace DeathFirstSearchEp2
                 stringBuilder.Append('\n');
             }
             return stringBuilder.ToString();
+        }
+
+        internal class LinkStore : IEnumerable<Tuple<int, int>>
+        {
+            private HashSet<Tuple<int, int>> links;
+            private int linkedGateways;
+
+            internal LinkStore()
+            {
+                this.links = new HashSet<Tuple<int, int>>();
+                linkedGateways = 0;
+            }
+
+            public IEnumerator<Tuple<int, int>> GetEnumerator()
+            {
+                return ((IEnumerable<Tuple<int, int>>)links).GetEnumerator();
+            }
+
+            internal bool Contains(Tuple<int, int> linkToCheck)
+            {
+                return links.Contains(linkToCheck);
+            }
+
+            internal void Remove(Tuple<int, int> t)
+            {
+                links.Remove(t);
+            }
+
+            internal void StoreLink(int n1, int n2)
+            {
+                links.Add(Tuple.Create<int, int>(n2, n1));
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return ((IEnumerable)links).GetEnumerator();
+            }
         }
     }
 }
