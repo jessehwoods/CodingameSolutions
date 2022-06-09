@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DeathFirstSearchEp1Tests")]
 
@@ -11,6 +9,7 @@ namespace DeathFirstSearchEp1
 
     /**
      * This is a solution to the puzzle at https://www.codingame.com/training/medium/death-first-search-episode-1
+     * successful as of 6/9/2022
      */
 
     class Player
@@ -31,10 +30,12 @@ namespace DeathFirstSearchEp1
                 inputs = Console.ReadLine().Split(' ');
                 int N1 = int.Parse(inputs[0]); // N1 and N2 defines a link between these nodes
                 int N2 = int.Parse(inputs[1]);
+                solver.AddLink(N1, N2);
             }
             for (int i = 0; i < E; i++)
             {
                 int EI = int.Parse(Console.ReadLine()); // the index of a gateway node
+                solver.AddGateway(EI);
             }
 
             // game loop
@@ -56,15 +57,18 @@ namespace DeathFirstSearchEp1
      */
     internal class Solver
     {
+        // Each cell of the array represents a node, with the tuples representing links to other nodes
         private HashSet<Tuple<int,int>>[] nodes;
+        
+        // Holds the indexes of any nodes that are gateways.
         HashSet<int> gateways;
+        
         public Solver(int nodes)
         {
             // Number of nodes in the graph
             this.nodes = new HashSet<Tuple<int, int>>[nodes];
             // Initialize the hashset of gateways
             gateways = new HashSet<int>();
-            // Initialize the hashset of links
         }
 
 
@@ -73,6 +77,7 @@ namespace DeathFirstSearchEp1
          */
         public void AddLink(int n1, int n2)
         {
+            // Handle the case of an empty cell
             if (nodes[n1] == null)
             {
                 nodes[n1] = new HashSet<Tuple<int, int>>();
@@ -99,7 +104,38 @@ namespace DeathFirstSearchEp1
          */
         public string Solve(int input)
         {
-            return null;
+            var toProcess = new Queue < Tuple<int, int>>(); // This will be loaded with links to check for a gateway
+            var staging = new Queue < Tuple<int, int> >(); // This will be loaded with links to have their sub-links checked
+            foreach (Tuple<int, int> t in nodes[input]) // Load the initial group to process
+            {
+                toProcess.Enqueue(t);
+            }
+            while (toProcess.Count > 0)
+            {
+                while (toProcess.Count > 0)
+                {
+                    var t = toProcess.Dequeue();
+                    if ( gateways.Contains(t.Item2) ) // Found a link to a gateway
+                    {
+                        // Remove links
+                        nodes[t.Item1].Remove(t);
+                        nodes[t.Item2].Remove(new Tuple<int, int>(t.Item2, t.Item1));
+                        // Return string
+                        return String.Format("{0} {1}", Math.Min( t.Item1, t.Item2), Math.Max( t.Item1, t.Item2) );
+                    }
+                    // Not a link to a gateway, so let's add it to have its sub-links examined
+                    staging.Enqueue(t);
+                }
+                while (staging.Count > 0) // Didn't find a link to a gateway, so we'll load up sub-links to examine
+                {
+                    var t = staging.Dequeue();
+                    foreach (Tuple<int, int> x in nodes[t.Item2])
+                    {
+                        toProcess.Enqueue(x);
+                    }
+                }
+            }
+            return "No gateway found"; // Didn't find anything. That's weird.
         }
 
         /**
