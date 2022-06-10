@@ -114,47 +114,55 @@ namespace DeathFirstSearchEp2
              */
             public string Solve(int input)
             {
+                Tuple<int, int> linkToSever = ProcessLinks(true, input); // Try it first looking for big ones.
+                if (linkToSever == null)
+                {
+                    linkToSever = ProcessLinks(false, input); // Didn't find any big ones, so just go for something close.
+                }
+                if (linkToSever == null)
+                {
+                    return "No gateway found"; // Didn't find anything. That's weird.
+                }
+                return RemoveLinks(linkToSever);
+            }
+
+            /**
+             * Takes a link and finds links to gateways.
+             * The bool bigcheck tells us, if true, we only want links that 1) are immediately next to the input index, 
+             * or 2) particularly large. 
+             * If false: just sever the nearest.
+             * 
+             * This is on the theory that a node connected to only one gateway is only a threat if it is immediately next to the input
+             * index, so we might want to focus on just cutting up the nearest node that connects to multiple gateways.
+             * 
+             * Returns null if no matching link is found.
+             */
+            private Tuple<int, int> ProcessLinks(bool bigcheck, int input)
+            {
+                Tuple<int, int> toReturn = null;
+                bool firstPass = true; // Tracking element to tell us if we're still on the first set of links
                 var toProcess = new Queue<Tuple<int, int>>(); // This will be loaded with links to check for a gateway
+                var visited = new HashSet<int>(); // Tracks indexes that have been visited already
                 var staging = new Queue<Tuple<int, int>>(); // This will be loaded with links to have their sub-links checked
-                var finalChoice = new List<Tuple<int, int>>();
                 foreach (Tuple<int, int> t in nodes[input]) // Load the initial group to process
                 {
                     toProcess.Enqueue(t);
                 }
                 while (toProcess.Count > 0)
                 {
+                    visited.Add(toProcess.Peek().Item1);
                     while (toProcess.Count > 0)
                     {
                         var t = toProcess.Dequeue();
-                        if (gateways.Contains(t.Item2)) // Found a link to a gateway
+                        if ( gateways.Contains(t.Item2) && ((firstPass || !bigcheck) || nodes[t.Item1].GetLinkedGateways() > 1)) // Only want single links if they are 1) in the first set, or 2) bigcheck is false
                         {
-                            // Add to the list for later consideration
-                            finalChoice.Add(t);
+                            // We found one that meets our requirements, so return it
+                            return t;
                         }
-                        // Not a link to a gateway, so let's add it to have its sub-links examined
-                        staging.Enqueue(t);
-                    }
-                    if (finalChoice.Count > 0) // Checks if we found at least one gateway
-                    {
-                        // Found some gateways on this iteration, so need to pick one connected to 2 gateways if possible
-                        Tuple<int, int> linkToSever = finalChoice[0];
-                        foreach (Tuple<int, int> t in finalChoice)
-                        {
-                            if (nodes[t.Item1].GetLinkedGateways() == 2)
-                            {
-                                if (nodes[t.Item1].GetLinkedGateways() > nodes[linkToSever.Item1].GetLinkedGateways())
-                                {
-                                    linkToSever = t;
-                                }
-                            }
+                        // Also add it to have its sub-links examined, if it hasn't been visited yet
+                        if (!visited.Contains(t.Item2)) {
+                            staging.Enqueue(t);
                         }
-                        // Remove links
-                        nodes[linkToSever.Item1].Remove(linkToSever);
-                        nodes[linkToSever.Item2].Remove(new Tuple<int, int>(linkToSever.Item2, linkToSever.Item1));
-                        //Reduce the gateway links in this node
-                        nodes[linkToSever.Item1].DecreaseLinkedGateways();
-                        // Return string
-                        return String.Format("{0} {1}", Math.Min(linkToSever.Item1, linkToSever.Item2), Math.Max(linkToSever.Item1, linkToSever.Item2));
                     }
                     while (staging.Count > 0) // Didn't find a link to a gateway, so we'll load up sub-links to examine
                     {
@@ -164,8 +172,28 @@ namespace DeathFirstSearchEp2
                             toProcess.Enqueue(x);
                         }
                     }
+                    firstPass = false; // Done with first pass.
                 }
-                return "No gateway found"; // Didn't find anything. That's weird.
+                return toReturn;
+            }
+
+            private string RemoveLinks(Tuple<int, int> linkToSever)
+            {
+                // Remove links
+                nodes[linkToSever.Item1].Remove(linkToSever);
+                nodes[linkToSever.Item2].Remove(new Tuple<int, int>(linkToSever.Item2, linkToSever.Item1));
+                //Reduce the gateway links if necessary
+                if (gateways.Contains(linkToSever.Item2))
+                {
+                    nodes[linkToSever.Item1].DecreaseLinkedGateways();
+                }
+                else if (gateways.Contains(linkToSever.Item1))
+                {
+                    nodes[linkToSever.Item2].DecreaseLinkedGateways();
+                }
+
+                // Return string
+                return String.Format("{0} {1}", Math.Min(linkToSever.Item1, linkToSever.Item2), Math.Max(linkToSever.Item1, linkToSever.Item2));
             }
 
             /**

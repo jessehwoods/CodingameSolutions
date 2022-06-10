@@ -90,6 +90,26 @@ namespace DeathFirstSearchEp2Tests
             Assert.AreEqual("3 5", testSolver.Solve(4));
             Assert.AreEqual("0 1", testSolver.Solve(2));
         }
+
+        /*
+         * Has a gate with a single link that is far away. Checks that this doesn't time out the program.
+         */
+        [TestMethod]
+        public void TestSolveFarGate()
+        {
+            testSolver = new Solver(7);
+            testSolver.AddLink(0, 1);
+            testSolver.AddLink(0, 2);
+            testSolver.AddLink(0, 3);
+            testSolver.AddLink(2, 4);
+            testSolver.AddLink(2, 5);
+            testSolver.AddLink(3, 5);
+            testSolver.AddLink(4, 5);
+            testSolver.AddLink(5, 6);
+            testSolver.AddGateway(6);
+            Assert.AreEqual("5 6", testSolver.Solve(0));
+            Assert.AreEqual("No gateway found", testSolver.Solve(2));
+            }
+        }
     }
-}
 }
