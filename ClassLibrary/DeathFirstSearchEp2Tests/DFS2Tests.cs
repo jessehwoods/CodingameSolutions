@@ -5,6 +5,7 @@ namespace DeathFirstSearchEp2Tests
     using DeathFirstSearchEp2;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using static DeathFirstSearchEp2.Player;
 
     [TestClass]
     public class DFS2Tests
@@ -31,7 +32,7 @@ namespace DeathFirstSearchEp2Tests
         private string SOLVED_TEST_RETURN = "1 2";
         private string SOLVED_TEST_STRING = "0,(0,1)\n1,(0,1)\n*2\n";
 
-        private Solver testSolver;
+        private Player.Solver testSolver;
 
         [TestInitialize]
         public void Setup()
@@ -74,7 +75,7 @@ namespace DeathFirstSearchEp2Tests
         [TestMethod]
         public void TestSolveDoubleGate()
         {
-            testSolver = new Solver(6);
+            testSolver = new Solver(7);
             testSolver.AddLink(0, 1);
             testSolver.AddLink(0, 2);
             testSolver.AddLink(0, 3);
@@ -86,7 +87,7 @@ namespace DeathFirstSearchEp2Tests
             testSolver.AddGateway(1);
             testSolver.AddGateway(3);
             testSolver.AddGateway(6);
-            Assert.AreEqual("1 3", testSolver.Solve(4));
+            Assert.AreEqual("3 5", testSolver.Solve(4));
             Assert.AreEqual("0 1", testSolver.Solve(2));
         }
     }
