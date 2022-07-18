@@ -141,6 +141,7 @@ namespace DeathFirstSearchEp2
             {
                 Tuple<int, int> toReturn = null;
                 bool firstPass = true; // Tracking element to tell us if we're still on the first set of links
+                bool foundALink = false; // Tracking element to flag that we have already found a link. Used to push towards nearer groupings once they're found.
                 var toProcess = new Queue<Tuple<int, int>>(); // This will be loaded with links to check for a gateway
                 var visited = new HashSet<int>(); // Tracks indexes that have been visited already
                 var staging = new Queue<Tuple<int, int>>(); // This will be loaded with links to have their sub-links checked
@@ -159,6 +160,11 @@ namespace DeathFirstSearchEp2
                             // We found one that meets our requirements, so return it
                             return t;
                         }
+                        // Found one with a link, so we can restrict out search more
+                        if (nodes[t.Item1].GetLinkedGateways() > 0)
+                        {
+                            foundALink = true;
+                        }
                         // Also add it to have its sub-links examined, if it hasn't been visited yet
                         if (!visited.Contains(t.Item2)) {
                             staging.Enqueue(t);
@@ -169,7 +175,9 @@ namespace DeathFirstSearchEp2
                         var t = staging.Dequeue();
                         foreach (Tuple<int, int> x in nodes[t.Item2])
                         {
-                            toProcess.Enqueue(x);
+                            if (!foundALink || nodes[x.Item1].GetLinkedGateways() != 0) {
+                                toProcess.Enqueue(x);
+                            }
                         }
                     }
                     firstPass = false; // Done with first pass.

@@ -10,11 +10,6 @@ namespace DeathFirstSearchEp2Tests
     [TestClass]
     public class DFS2Tests
     {
-
-
-    [TestClass]
-    public class DFS1Tests
-    {
         private int NUMBER_OF_NODES = 3;
         private int GATEWAY_NODE = 2;
         private int SOLVE_NODE = 1;
@@ -112,4 +107,4 @@ namespace DeathFirstSearchEp2Tests
             }
         }
     }
-}
+
