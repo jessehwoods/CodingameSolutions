@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathFirstSearchEp2", "Deat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeathFirstSearchEp2Tests", "DeathFirstSearchEp2Tests\DeathFirstSearchEp2Tests.csproj", "{F42F533C-F11E-4812-A621-DC75E71F6FDD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DontPanicEpisode1Solution", "DontPanicEpisode1Solution\DontPanicEpisode1Solution.csproj", "{5D0A241A-EC01-4126-BA59-337729ADF6EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{F42F533C-F11E-4812-A621-DC75E71F6FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F42F533C-F11E-4812-A621-DC75E71F6FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F42F533C-F11E-4812-A621-DC75E71F6FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D0A241A-EC01-4126-BA59-337729ADF6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D0A241A-EC01-4126-BA59-337729ADF6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D0A241A-EC01-4126-BA59-337729ADF6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D0A241A-EC01-4126-BA59-337729ADF6EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
